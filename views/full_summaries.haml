@@ -1,0 +1,10 @@
+- unless pages.empty?
+  %ul.thumbnails
+    - pages.each do |page|
+      %li.page-link(id="#{page.date}")
+        %article.thumbnail.clearfix
+          %header
+            %h3
+              = page.link_text
+          ~ page.body(self)
+/          = haml :page_meta, :layout => false, :locals => { :page => page }

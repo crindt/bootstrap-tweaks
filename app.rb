@@ -2,6 +2,27 @@
 # do whatever else you fancy when the theme is loaded.
 
 module Nesta
+  module Navigation
+    module Renderers
+      # override to pass "active" to bootstrap instead of "current"
+      def display_menu_item(item, options = {})
+        if item.respond_to?(:each)
+          if (options[:levels] - 1) > 0
+            haml_tag :li do
+              display_menu(item, :levels => (options[:levels] - 1))
+            end
+          end
+        else
+          html_class = current_item?(item) ? "active" : nil
+          haml_tag :li, :class => html_class do
+            haml_tag :a, :<, :href => url(item.abspath) do
+              haml_concat link_text(item)
+            end
+          end
+        end
+      end
+    end
+  end
   class App
     # Uncomment the Rack::Static line below if your theme has assets
     # (i.e images or JavaScript).
@@ -20,6 +41,18 @@ module Nesta
           'container-fluid'
         else
           'container'
+        end
+      end
+
+      def page_list_by_date( page )
+        haml_tag :ul do |ul|
+          page.articles.each do |pg|
+            haml_tag :li, do |li|
+              haml_tag :a, :href => "##{pg.date}" do
+                haml_concat "#{format_date(pg.date)}"
+              end
+            end
+          end
         end
       end
     end

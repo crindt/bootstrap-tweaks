@@ -1,0 +1,13 @@
+.row.page-link
+  .span8
+    %section.article
+      ~ @page.to_html(self)
+
+    %section.articles
+
+      = haml :full_summaries, :layout => false, :locals => { :pages => @page.articles }
+
+  .span4
+    %aside.nav
+      %h2 Index
+      - page_list_by_date( @page )
