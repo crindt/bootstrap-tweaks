@@ -4,6 +4,10 @@
 module Nesta
   module View
     module Helpers
+      def article_summaries(articles, liclasses = "")
+        haml(:summaries, :layout => false, :locals => { :pages => articles, :liclasses => liclasses })
+      end
+
       def filter_for_categories(pages,cats)
         pages.select do |page|
           tp = Page.find_by_path(cats)
