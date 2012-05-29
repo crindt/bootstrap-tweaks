@@ -8,8 +8,6 @@ module Nesta
         pages.select do |page|
           tp = Page.find_by_path(cats)
           val = page.categories.include?(tp)
-
-          $stderr.puts( "FF: #{page} #{val} cats (#{tp})" )
           val
         end
       end
@@ -18,7 +16,6 @@ module Nesta
         pages.select do |page|
           tp = Page.find_by_path(cats)
           val = !page.categories.include?(Page.find_by_path(cats))
-          $stderr.puts( "FO: #{page} #{val} cats (#{tp})" )
           val
         end
       end

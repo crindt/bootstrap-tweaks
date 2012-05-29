@@ -8,8 +8,9 @@
       %a#wlmrlink.brand{:href => "#{url('/#')}"} 
       .nav-collapse
         - display_menu(Nesta::Menu.top_level, :class => "nav" )
-      .nav.pull-right      
+      .nav.pull-right
         .social
+          %a.btn.btn-primary.btn-small(href="#" style="font-size:100%;margin-top:0px;" title="Donate to support the Rico family") Donate
           %a(href="https://www.facebook.com/pages/Weelittlemanrico/462839513730559" title="We're on Facebook")
             %img(width=30 src="#{url('attachments/logos/f_logo.png')}")
           %a(href="https://twitter.com/#weelittlemanrico")
