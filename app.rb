@@ -2,6 +2,28 @@
 # do whatever else you fancy when the theme is loaded.
 
 module Nesta
+  module View
+    module Helpers
+      def filter_for_categories(pages,cats)
+        pages.select do |page|
+          tp = Page.find_by_path(cats)
+          val = page.categories.include?(tp)
+
+          $stderr.puts( "FF: #{page} #{val} cats (#{tp})" )
+          val
+        end
+      end
+
+      def filter_out_categories(pages,cats)
+        pages.select do |page|
+          tp = Page.find_by_path(cats)
+          val = !page.categories.include?(Page.find_by_path(cats))
+          $stderr.puts( "FO: #{page} #{val} cats (#{tp})" )
+          val
+        end
+      end
+    end
+  end
   module Navigation
     module Renderers
       # override to pass "active" to bootstrap instead of "current"
@@ -45,9 +67,9 @@ module Nesta
       end
 
       def page_list_by_date( page )
-        haml_tag :ul do |ul|
+        haml_tag :ul do
           page.articles.each do |pg|
-            haml_tag :li, do |li|
+            haml_tag :li do
               haml_tag :a, :href => "##{pg.date}" do
                 haml_concat "#{format_date(pg.date)}"
               end

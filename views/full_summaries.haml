@@ -4,7 +4,7 @@
       %li.page-link(id="#{page.date}")
         %article.thumbnail.clearfix
           %header
-            %h3
+            %h1
               = page.link_text
           ~ page.body(self)
 /          = haml :page_meta, :layout => false, :locals => { :page => page }

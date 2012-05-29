@@ -3,7 +3,7 @@
     %section.article
       ~ @page.to_html(self)
 
-    %section.articles
+    %section.articles.summaries
 
       = haml :full_summaries, :layout => false, :locals => { :pages => @page.articles }
 

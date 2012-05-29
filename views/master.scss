@@ -1,6 +1,39 @@
 body {
     padding-top: 40px;
+    font-family: 'Cabin Condensed', sans-serif;
+
+    font-size: 18px;
+
+    p {
+        //font-family: 'Cabin Condensed', sans-serif;
+        font-size: 18px;
+        line-height: 1.25em;
+    }
 }
+
+h1 {
+    font-size: 300%;
+}
+h2 {
+    font-size: 200%;
+}
+
+h3 {
+    font-size: 150%;
+}
+h4, h5, h6 {
+    font-size: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.75em;
+}
+
+p {
+    // Add spacing between paragraphs, including the first
+    margin-top: 1em;
+}
+
+
 
 
 .header {
@@ -17,10 +50,19 @@ body {
         text-shadow: 2px 2px rgba(0,0,0,.3);
     }
 
+    .slogan {
+        color: #dedede;
+        text-shadow: 2px 2px rgba(0,0,0,.3)
+    }
+
     h2 {
         position: absolute;
         bottom:1em;
         right: 1em;
+    }
+
+    img {
+        background: #fff;
     }
 }
 
@@ -49,6 +91,31 @@ body {
     padding:0px;
 }
 
+.navbar-fixed-top {
+    box-shadow:0 10px 10px rgba(2,0,0,0.3);
+}
+
+.navbar .social {
+    margin-top:5px;
+}
+
 .page-link {
     padding-top: 40px;
+}
+
+section {
+    margin-top: 1.75em;
+    &.summaries {
+        article header {
+            h1 {
+                font-size: 125%;
+            }
+        }
+    }
+}
+
+aside {
+    position: fixed;
+    overflow-y: auto;
+    height: 80%;  // leave 20% for the header, should work in most cases
 }

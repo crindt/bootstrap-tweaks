@@ -7,9 +7,10 @@
         %span.icon-bar
       %a#wlmrlink.brand{:href => "#{url('/#')}"} 
       .nav-collapse
-        %ul.nav
-          %li
-            %a{:href => "#{url('/#about')}"} Tanner and Pria
         - display_menu(Nesta::Menu.top_level, :class => "nav" )
-        %p.navbar-text.pull-right
-          %em I can do all things through Christ who strengthens me ~ Ph 4:13
+      .nav.pull-right      
+        .social
+          %a(href="https://www.facebook.com/pages/Weelittlemanrico/462839513730559" title="We're on Facebook")
+            %img(width=30 src="#{url('attachments/logos/f_logo.png')}")
+          %a(href="https://twitter.com/#weelittlemanrico")
+            %img(width=30 src="#{url('attachments/logos/twitter_newbird_boxed_whiteonblue.png')}")
