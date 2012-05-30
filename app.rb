@@ -4,6 +4,7 @@
 module Nesta
   module View
     module Helpers
+
       def article_summaries(articles, liclasses = "")
         haml(:summaries, :layout => false, :locals => { :pages => articles, :liclasses => liclasses })
       end

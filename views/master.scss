@@ -104,7 +104,7 @@ p {
 
 section {
     margin-top: 1.75em;
-    &.summaries {
+    &.summaries, &.articles {
         article header {
             h1 {
                 font-size: 125%;
