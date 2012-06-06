@@ -1,0 +1,7 @@
+.row
+  .span12
+    ~ @page.to_html(self)
+
+    %section.articles.summaries
+
+      = haml :summaries, :layout => false, :locals => { :pages => @page.articles, :liclasses => "" }
