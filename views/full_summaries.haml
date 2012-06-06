@@ -1,7 +1,7 @@
 - unless pages.empty?
   %ul.thumbnails
     - pages.each do |page|
-      %li.page-link(id="#{page.date}")
+      %li.page-link(id="#{page.path.gsub(/\//,"_")}")
         %article.thumbnail.clearfix
           %header
             %h1

@@ -1,4 +1,14 @@
 body {
+    background: url(../attachments/img/tanner-caricature-005-a20-x1280.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 0%;
+    background-attachment: fixed;
+
+    &.no-background {
+        background: none;
+    }
+
     padding-top: 40px;
     font-family: 'Cabin Condensed', sans-serif;
 
@@ -61,9 +71,6 @@ p {
         right: 1em;
     }
 
-    img {
-        background: #fff;
-    }
 }
 
 .tanner-back {
@@ -79,6 +86,14 @@ p {
     background-size: cover;
     background-position: 50% 65%;
     height: 480px;
+}
+
+.tanner-sitting {
+    background: url(../attachments/img/tanner-sitting-smile-crop-x640.jpg);
+    background-color: #fff;
+    background-size: cover;
+    background-position: 50% 0%;
+    height: 640px;
 }
 
 #wlmrlink {
@@ -157,3 +172,20 @@ aside {
     border-radius: 6px;  /* to be consistent with hero unit */
 }
 
+
+#content {
+    background: rgba( 255,255,255,0.5 );
+    box-shadow: rgba( 0, 0, 0, 0.5 ) 0px 10px 20px;
+    min-height: 640px;
+}
+
+footer {
+    margin-top: 2.5em;
+}
+
+.span1, .span2, .span3, span4, .span5, .span6, .span7, .span8, .span9, .span10, .span11, .span12 {
+    &>section, &>p, &>header, &>h1, &>h2, &>h3, &>h4, &>h5, &>h6 {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}

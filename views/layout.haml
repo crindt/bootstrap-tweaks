@@ -17,14 +17,14 @@
     /[if lt IE 9]
       %script{:src => '//html5shim.googlecode.com/svn/trunk/html5.js'}
     %link{:href => "#{url('/articles.xml')}", :rel => 'alternate', :type => 'application/atom+xml'}
-    %link{:href => "#{url('/bootstrap/favicon.ico')}", :rel => "shortcut icon"}
-    %link{:href => "#{url('/bootstrap/images/apple-touch-icon.png')}", :rel => "apple-touch-icon"}
-    %link{:href => "#{url('/bootstrap/images/apple-touch-icon-72x72.png')}", :rel => "apple-touch-icon", :sizes => "72x72"}
-    %link{:href => "#{url('/bootstrap/images/apple-touch-icon-114x114.png')}", :rel => "apple-touch-icon", :sizes => "114x114"}
+    %link{:href => "#{url('/attachments/img/favicon.ico?123')}", :rel => "shortcut icon"}
+    %link{:href => "#{url('/attachments/img/apple-touch-icon.png')}", :rel => "apple-touch-icon"}
+    %link{:href => "#{url('/attachments/img/apple-touch-icon-72x72.png')}", :rel => "apple-touch-icon", :sizes => "72x72"}
+    %link{:href => "#{url('/attachments/img/apple-touch-icon-114x114.png')}", :rel => "apple-touch-icon", :sizes => "114x114"}
     %link{:href=>'http://fonts.googleapis.com/css?family=Cabin+Condensed:400,500,600,700', :rel=>'stylesheet', :type=>'text/css'}
 
     %title= @title
-  %body
+  %body{:class => @page.metadata('bodyclass')}
     #menu
       = haml :menu, :layout => false
 

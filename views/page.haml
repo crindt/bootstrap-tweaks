@@ -1,5 +1,14 @@
-~ @page.to_html(self)
-
-%section.articles
-
-  = haml :summaries, :layout => false, :locals => { :pages => @page.articles, :liclasses => "" }
+#content
+  .row.page-link
+    .span8
+      ~ @page.to_html(self)
+  
+      %section.articles.summaries
+  
+        = haml :summaries, :layout => false, :locals => { :pages => @page.articles, :liclasses => "" }
+  
+    .span4
+      %aside.span4
+        - if @page.articles.length > 1
+          %h2 #{@page.title} Index
+          - page_list_by_date( @page.articles )

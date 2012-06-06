@@ -68,12 +68,24 @@ module Nesta
         end
       end
 
-      def page_list_by_date( page )
+      def page_list_by_date( pages )
         haml_tag :ul do
-          page.articles.each do |pg|
+          pages.each do |pg|
             haml_tag :li do
-              haml_tag :a, :href => "##{pg.date}" do
+              haml_tag :a, :href => "##{pg.path.gsub(/\//,"_")}" do
                 haml_concat "#{format_date(pg.date)}"
+              end
+            end
+          end
+        end
+      end
+
+      def page_list_by_title( page )
+        haml_tag :ul do
+          page.each do |pg|
+            haml_tag :li do
+              haml_tag :a, :href => "##{pg.path.gsub(/\//,"_")}" do
+                haml_concat "#{pg.title}"
               end
             end
           end

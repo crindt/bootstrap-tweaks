@@ -1,0 +1,21 @@
+.row.page-link
+  .span12
+    %section.row
+      .hero-unit.curl.tanner-sitting
+        .row
+          %img.pull-left(width=300 src="#{url('/attachments/img/tanner-caricature-005-x1280.png')}")
+          %header
+            %h1= Nesta::Config.title
+            %small.slogan I can do all things through Christ who strengthens me ~ Ph 4:13
+    
+        .row
+          %h2
+            = Nesta::Config.subtitle
+
+.row#content
+  .span12
+    ~ @page.to_html(self)
+
+    %section.articles.summaries
+
+      = haml :summaries, :layout => false, :locals => { :pages => @page.articles, :liclasses => "" }
