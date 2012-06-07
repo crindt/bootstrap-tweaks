@@ -1,3 +1,31 @@
+#donationsModal.modal.hide.fade(style="display:none")
+  .modal-header
+    %button.close(type="button" data-dismiss="modal") x
+    %h3 Help Tanner’s family pay for his medical bills.  
+  .modal-body
+    :markdown
+
+      You can send a donation by mail through the Mitchell Thorp Foundation at:
+
+      > Mitchell Thorp Foundation - Rico Family <br>
+      > 6965 El Camino Real<br>
+      > Suite 105-433<br>
+      > Carlsbad, CA 92009
+
+      You can also donate online by clicking the donate button below.
+      This will take you to the Foundation's donate link where you can
+      submit a donation via Paypal.  After you click on the Paypal
+      link, fill out the information on screen and click continue.  On
+      the second screen you will see a blue link that says (Add
+      special instructions to seller).  Click this and leave to note
+      to indicate that your donation is for Tanner Rico.
+
+      Thank you so much for your support.
+
+  .modal-footer
+
+    %a.btn(href="#" data-dismiss="modal") Close
+    %a.btn.btn-primary(href="http://www.mitchellthorp.com/donations.php") Donate
 .navbar.navbar-fixed-top
   .navbar-inner
     %div.container
@@ -8,10 +36,11 @@
       %a#wlmrlink.brand{:href => "#{url('/#')}"} 
       .nav-collapse
         - display_menu(Nesta::Menu.top_level, :class => "nav" )
+
       .nav.pull-right
         .social
           %a.btn.btn-primary.btn-small(href="/hire" style="font-size:100%;margin-top:0px;" title="Traci is looking for work") Hire Traci
-          %a.btn.btn-primary.btn-small(href="http://www.mitchellthorp.com/donations.php" style="font-size:100%;margin-top:0px;" title="Help Tanner's family pay for his medical bills") Donate Now
+          %a.btn.btn-primary.btn-small(href="#donationsModal" style="font-size:100%;margin-top:0px;" title="Help Tanner's family pay for his medical bills" data-toggle="modal") Donate Now
+
           %a(href="https://www.facebook.com/pages/Weelittlemanrico/462839513730559" title="We're on Facebook")
             %img(width=30 src="#{url('attachments/logos/f_logo.png')}")
-
