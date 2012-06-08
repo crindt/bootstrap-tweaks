@@ -113,7 +113,7 @@ module Nesta
       Pony.mail(
                 :from => "#{params[:name]} <#{params[:mail]}>",
                 :to => ENV['CONTACT_ADDRESS'] || 'crindt@gmail.com <crindt@gmail.com>',
-                :subject => "#{params[:name]} has contacted you regarding: #{params[:subject]",
+                :subject => "#{params[:name]} has contacted you regarding: #{params[:subject]}",
                 :body => params[:message],
                 :port => '587',
                 :via => :smtp,
