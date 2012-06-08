@@ -1,6 +1,10 @@
 # Use the app.rb file to load Ruby code, modify or extend the models, or
 # do whatever else you fancy when the theme is loaded.
 
+require 'sinatra'
+require 'sinatra/recaptcha'
+require 'pony'              # mail handler
+
 module Nesta
   module View
     module Helpers
@@ -98,6 +102,32 @@ module Nesta
     get '/css/:sheet.css' do
       content_type 'text/css', :charset => 'utf-8'
       cache stylesheet(params[:sheet].to_sym)
+    end
+
+    post '/contact' do
+      #halt(401, "invalid captcha") unless captcha_correct?
+
+      $stderr.puts "SENDING #{params}"
+      $stderr.puts "SENDING #{params['name']} <#{params['mail']}>"
+      $stderr.puts "ENV #{ENV['SMTP_HOST']} #{ENV['SENDGRID_USERNAME']} #{ENV['SENDGRID_PASSWORD']} #{ENV['SENDGRID_DOMAIN']}"
+      Pony.mail(
+                :from => "#{params[:name]} <#{params[:mail]}>",
+                :to => 'crindt@gmail.com <crindt@gmail.com>',
+                :subject => "#{params[:name]} has contacted you",
+                :body => params[:message],
+                :port => '587',
+                :via => :smtp,
+                :via_options => {
+                  :address              => ENV['SMTP_HOST'] || 'smtp.sendgrid.net',
+                  :port                 => '587',
+                  :enable_starttls_auto => true,
+                  :user_name            => ENV['SENDGRID_USERNAME'],
+                  :password             => ENV['SENDGRID_PASSWORD'],
+                  :authentication       => :plain, 
+                  :domain               => ENV['SENDGRID_DOMAIN']
+                }
+                )
+      redirect '/success' 
     end
   end
 end
