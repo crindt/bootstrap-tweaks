@@ -107,12 +107,12 @@ module Nesta
     post '/contact' do
       #halt(401, "invalid captcha") unless captcha_correct?
 
-      $stderr.puts "SENDING #{params}"
-      $stderr.puts "SENDING #{params['name']} <#{params['mail']}>"
-      $stderr.puts "ENV #{ENV['SMTP_HOST']} #{ENV['SENDGRID_USERNAME']} #{ENV['SENDGRID_PASSWORD']} #{ENV['SENDGRID_DOMAIN']}"
+      # $stderr.puts "SENDING #{params}"
+      # $stderr.puts "SENDING #{params['name']} <#{params['mail']}>"
+      # $stderr.puts "ENV #{ENV['SMTP_HOST']} #{ENV['SENDGRID_USERNAME']} #{ENV['SENDGRID_PASSWORD']} #{ENV['SENDGRID_DOMAIN']}"
       Pony.mail(
                 :from => "#{params[:name]} <#{params[:mail]}>",
-                :to => 'crindt@gmail.com <crindt@gmail.com>',
+                :to => ENV['CONTACT_ADDRESS'] || 'crindt@gmail.com <crindt@gmail.com>',
                 :subject => "#{params[:name]} has contacted you",
                 :body => params[:message],
                 :port => '587',
