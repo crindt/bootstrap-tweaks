@@ -62,8 +62,6 @@ module Nesta
 
     helpers Rack::Recaptcha::Helpers
 
-
-
     not_found do
       haml :error
     end
@@ -102,6 +100,9 @@ module Nesta
       end
     end
 
+    # needed for mail form consistency
+    enable :sessions
+
     # Add new routes here.
 
     get '/css/:sheet.css' do
@@ -110,7 +111,20 @@ module Nesta
     end
 
     post '/contact' do
-      redirect to('/contact?captcha=failed') unless recaptcha_valid?
+      if !recaptcha_valid?
+        session[:captcha] = 'failed'
+        session[:name] = params[:name]
+        session[:email] = params[:email]
+        session[:subject] = params[:subject]
+        session[:message] = params[:message]
+        redirect to('/contact?captcha=failed') 
+      end
+
+#      session[:captcha] = nil
+#      session[:name] = nil
+#      session[:email] = nil
+#      session[:subject] = nil
+#      session[:message] = nil
 
       # $stderr.puts "SENDING #{params}"
       # $stderr.puts "SENDING #{params[:name]} <#{params[:email]}>"
