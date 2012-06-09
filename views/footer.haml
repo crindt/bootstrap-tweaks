@@ -11,10 +11,39 @@
 %footer
   %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"}
   %script{:src => '/bootstrap/bootstrap.min.js', :async => false, :type => 'text/javascript'}
+  %script{:src=> 'http://jzaefferer.github.com/jquery-validation/jquery.validate.js', :type => 'text/javascript'}
 
   :javascript
-    /* Load tooltips */
     $(document).ready(function(){
+      /* Load tooltips */
       $('[title]').tooltip({placement:'bottom'});
-      });
+      /* Set up form validation */
+      $("#contactForm").validate({
+          rules: {
+              name: {
+                  minlength: 2,
+                  required: true
+              },
+              email: {
+                  required: true,
+                  email: true
+              },
+              subject: {
+                  minlength: 2,
+                  required: true
+              },
+              message: {
+                  minlength: 2,
+                  required: true
+              }
+          },
+          highlight: function(label) {
+              $(label).closest('.control-group').addClass('error');
+          },
+          success: function(label) {
+              label
+                  .text('OK!').addClass('valid')
+                  .closest('.control-group').addClass('success');
+          }});
+    });
 

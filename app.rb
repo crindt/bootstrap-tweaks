@@ -1,9 +1,8 @@
 # Use the app.rb file to load Ruby code, modify or extend the models, or
 # do whatever else you fancy when the theme is loaded.
 
-require 'sinatra'
-require 'sinatra/recaptcha'
 require 'pony'              # mail handler
+require 'rack/recaptcha'
 
 module Nesta
   module View
@@ -59,6 +58,12 @@ module Nesta
     #
     use Rack::Static, :urls => ["/bootstrap"], :root => "themes/bootstrap/public"
 
+    use Rack::Recaptcha, :public_key => ENV['RECAPTCHA_PUBLIC_KEY'], :private_key => ENV['RECAPTCHA_PRIVATE_KEY']
+
+    helpers Rack::Recaptcha::Helpers
+
+
+
     not_found do
       haml :error
     end
@@ -105,13 +110,13 @@ module Nesta
     end
 
     post '/contact' do
-      #halt(401, "invalid captcha") unless captcha_correct?
+      redirect to('/contact') unless recaptcha_valid?
 
       # $stderr.puts "SENDING #{params}"
-      # $stderr.puts "SENDING #{params[:name]} <#{params[:mail]}>"
+      # $stderr.puts "SENDING #{params[:name]} <#{params[:email]}>"
       # $stderr.puts "ENV #{ENV['SMTP_HOST']} #{ENV['SENDGRID_USERNAME']} #{ENV['SENDGRID_PASSWORD']} #{ENV['SENDGRID_DOMAIN']}"
       Pony.mail(
-                :from => "#{params[:name]} <#{params[:mail]}>",
+                :from => "#{params[:name]} <#{params[:email]}>",
                 :to => ENV['CONTACT_ADDRESS'] || 'crindt@gmail.com <crindt@gmail.com>',
                 :subject => "#{params[:name]} has contacted you regarding: #{params[:subject]}",
                 :body => params[:message],
