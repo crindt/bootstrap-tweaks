@@ -110,7 +110,7 @@ module Nesta
     end
 
     post '/contact' do
-      redirect to('/contact') unless recaptcha_valid?
+      redirect to('/contact?captcha=failed') unless recaptcha_valid?
 
       # $stderr.puts "SENDING #{params}"
       # $stderr.puts "SENDING #{params[:name]} <#{params[:email]}>"
