@@ -1,3 +1,7 @@
-#content
-  ~ @page.to_html(self)
+#content.clearfix
+  .row.page-link
+    .span8
+      ~ @page.to_html(self)
+    .span4
+      %aside
 

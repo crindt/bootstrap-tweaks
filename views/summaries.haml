@@ -8,7 +8,7 @@
               /%a(href="#{url(page.abspath)}")= page.link_text
               = page.link_text
           - if page.summary.nil? || page.summary.empty?
-            ~ page.body(self)
+            ~ page.to_html(self)
           - else
             ~ page.summary
             %p.read_more
