@@ -192,7 +192,7 @@ footer {
 }
 
 .span1, .span2, .span3, span4, .span5, .span6, .span7, .span8, .span9, .span10, .span11, .span12 {
-    &>section, &>p, &>header, &>h1, &>h2, &>h3, &>h4, &>h5, &>h6 {
+    &>section, &>p, &>header, &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>ul {
         padding-left: 20px;
         padding-right: 20px;
     }
